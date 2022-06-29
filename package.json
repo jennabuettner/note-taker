@@ -9,6 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
-  }
+    "express": "^4.18.1",
+    "uuid": "^8.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennabuettner/note-taker.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/jennabuettner/note-taker/issues"
+  },
+  "homepage": "https://github.com/jennabuettner/note-taker#readme"
 }

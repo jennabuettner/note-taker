@@ -43,4 +43,28 @@ express.post("/notes", async (req, res) => {
   }
 });
 
+express.delete("/notes/:id", async (req, res) => {
+  console.log(req.params.id);
+  fs.readFile("db/db.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const parsedNote = JSON.parse(data);
+      const newArray = parsedNote.filter((note) => note.id !== req.params.id);
+      console.log(parsedNote);
+
+      fs.writeFile(
+        "db/db.json",
+        JSON.stringify(newArray, null, 4),
+        (err, data) => {
+          if (err) {
+            console.log(err);
+          }
+          res.json(data);
+        }
+      );
+    }
+  });
+});
+
 module.exports = express;

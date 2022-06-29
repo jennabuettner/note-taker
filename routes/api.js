@@ -6,13 +6,12 @@ express.get("/notes", (req, res) => {
   fs.readFile("db/db.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
-    } else {
-      const parsedNotes = JSON.parse(data);
     }
+    res.json(JSON.parse(data));
   });
 });
 
-express.post("/notes", (req, res) => {
+express.post("/notes", async (req, res) => {
   const { title, text } = req.body;
   console.log(text);
   if (req.body) {
@@ -32,10 +31,11 @@ express.post("/notes", (req, res) => {
         fs.writeFile(
           "db/db.json",
           JSON.stringify(parsedNote, null, 4),
-          (err) => {
+          (err, data) => {
             if (err) {
               console.log(err);
             }
+            res.json(data);
           }
         );
       }
